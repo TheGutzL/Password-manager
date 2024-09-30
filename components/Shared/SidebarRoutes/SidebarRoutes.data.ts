@@ -47,7 +47,7 @@ export const dataSidebarConfiguration = [
       {
         item: "Security",
         href: "#",
-        icon: Earth,
+        icon: Lock,
         premium: true,
       },
       {

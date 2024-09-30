@@ -1,14 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { HeaderMain } from "./components/HeaderMain";
 
 const Home = () => {
-  const { toast } = useToast();
-
   return (
     <div>
-      <Button>Click me</Button>
+      <HeaderMain />
     </div>
   );
 };

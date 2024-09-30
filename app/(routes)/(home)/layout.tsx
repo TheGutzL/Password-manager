@@ -1,6 +1,6 @@
 import { Logo } from "@/components/Shared/Logo";
 import { Sidebar } from "@/components/Shared/Sidebar";
-import React from "react";
+import { SidebarMobile } from "@/components/Shared/SidebarMobile";
 
 const LayoutRoutes = ({
   children,
@@ -11,7 +11,7 @@ const LayoutRoutes = ({
         <div className="py-1 text-white">
           <Logo />
         </div>
-        <div>SidebarMobile</div>
+        <SidebarMobile />
       </div>
       <div className="flex h-full">
         <div className="max-w-lg hidden lg:flex h-full w-72 flex-col fixed bg-blue-800 px-4 text-white">
