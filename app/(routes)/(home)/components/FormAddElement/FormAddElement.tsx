@@ -1,19 +1,16 @@
 "use client";
 
-import { SubmitHandler, useForm } from "react-hook-form";
-import { formSchema, FormSchema, defaultValues } from "./FormAddElement.form";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Select,
   SelectContent,
@@ -21,22 +18,48 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Copy, Earth, Eye, Lock, Shuffle } from "lucide-react";
-import { copyClipboard } from "@/lib/copyClipboard";
-import { useState } from "react";
-import { generatePassword } from "@/lib/generatePassword";
 import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { copyClipboard } from "@/lib/copyClipboard";
+import { generatePassword } from "@/lib/generatePassword";
+import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { Copy, Earth, Eye, Shuffle } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { defaultValues, formSchema, FormSchema } from "./FormAddElement.form";
+import { FormAddElementProps } from "./FormAddElement.types";
 
-const FormAddElement = () => {
+const FormAddElement = ({ userId }: FormAddElementProps) => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+  const { toast } = useToast();
+
   const form = useForm<FormSchema>({
     resolver: zodResolver(formSchema),
-    defaultValues,
+    defaultValues: {
+      ...defaultValues,
+      userId: userId,
+    },
   });
 
-  const onSubmit: SubmitHandler<FormSchema> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormSchema> = async (data) => {
+    try {
+      await axios.post(`/api/items`, data);
+      toast({ title: "Item Created" });
+
+      form.reset({
+        ...defaultValues,
+      });
+      router.refresh();
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      toast({
+        title: "Something went wrong",
+        variant: "destructive",
+      });
+    }
   };
 
   const generateRandomPassword = () => {
@@ -244,7 +267,7 @@ const FormAddElement = () => {
             )}
           />
 
-          <div/>
+          <div />
 
           <Button type="submit">Guardar</Button>
         </form>

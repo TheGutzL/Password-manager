@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -12,17 +11,16 @@ import {
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ChevronDown } from "lucide-react";
-import { dataHeaderMain } from "./HeaderMain.data";
 import { useState } from "react";
 import { FormAddElement } from "../FormAddElement";
+import { dataHeaderMain } from "./HeaderMain.data";
+import { HeaderMainProps } from "./HeaderMain.types";
 
-const HeaderMain = () => {
+const HeaderMain = ({ userId }: HeaderMainProps) => {
   const [typeElement, setTypeElement] = useState<"password" | "folder" | "">();
   const [openDialog, setOpenDialog] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(false);
@@ -74,7 +72,7 @@ const HeaderMain = () => {
           <DialogHeader>
             <DialogTitle>Nuevo Elemento</DialogTitle>
           </DialogHeader>
-          {typeElement === "password" && <FormAddElement />}
+          {typeElement === "password" && <FormAddElement userId={userId} />}
         </DialogContent>
       </Dialog>
     </div>

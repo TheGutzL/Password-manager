@@ -14,7 +14,7 @@ export const formSchema = z.object({
 
 export type FormSchema = z.infer<typeof formSchema>;
 
-export const defaultValues: FormSchema = {
+export const defaultValues: Omit<FormSchema, "userId"> = {
   typeElement: "",
   isFavourite: false,
   name: "",
@@ -23,5 +23,4 @@ export const defaultValues: FormSchema = {
   password: "",
   urlWebsite: "",
   notes: "",
-  userId: "",
 };
