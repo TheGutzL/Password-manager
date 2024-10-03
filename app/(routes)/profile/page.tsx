@@ -1,6 +1,7 @@
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { FormProfile } from "./components/FormProfile";
 
 const ProfilePage = async () => {
   const session = await getServerSession();
@@ -16,6 +17,8 @@ const ProfilePage = async () => {
   return (
     <div>
       <h1 className="text-xl">Account Details</h1>
+
+      <FormProfile user={userDb} />
     </div>
   );
 };
