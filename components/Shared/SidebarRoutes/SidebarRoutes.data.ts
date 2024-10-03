@@ -39,8 +39,8 @@ export const dataSidebarConfiguration = [
     icon: Settings,
     children: [
       {
-        item: "Favourites",
-        href: "/favourites",
+        item: "Profile",
+        href: "/profile",
         icon: UserPen,
         premium: false,
       },

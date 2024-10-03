@@ -31,7 +31,7 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { defaultValues, formSchema, FormSchema } from "./FormAddElement.form";
 import { FormAddElementProps } from "./FormAddElement.types";
 
-const FormAddElement = ({ userId }: FormAddElementProps) => {
+const FormAddElement = ({ userId, closeDialog }: FormAddElementProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
   const { toast } = useToast();
@@ -52,6 +52,7 @@ const FormAddElement = ({ userId }: FormAddElementProps) => {
       form.reset({
         ...defaultValues,
       });
+      closeDialog();
       router.refresh();
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
