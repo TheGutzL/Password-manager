@@ -22,14 +22,14 @@ const poppins = Poppins({
 export const metadata: Metadata = {
   title: "Gutz Password",
   description: "Creating a password manager",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
-}>)
-{
+}>) {
   return (
     <html lang="en">
       <body className={`${poppins.className} antialiased`}>
