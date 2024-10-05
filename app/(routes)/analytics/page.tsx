@@ -2,6 +2,9 @@ import { countPassword } from "@/lib/countPasswords";
 import { db } from "@/lib/db";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { RepeatedPasswordChart } from "./components/RepeatedPasswordChart";
+import { ViewsAnalyticsChart } from "./components/ViewsAnalyticsChart";
+import { TrafficDevice } from "./components/TrafficDevice";
 
 const Analytics = async () => {
   const session = await getServerSession();
@@ -30,10 +33,16 @@ const Analytics = async () => {
   return (
     <div>
       <div className="grid md:grid-cols-2 gap-5 mb-4">
-        <div>First block</div>
-        <div>Second block</div>
+        <RepeatedPasswordChart
+          repeated={repeated}
+          unique={unique}
+        />
+        <ViewsAnalyticsChart
+          repeated={repeated}
+          unique={unique}
+        />
       </div>
-      <div>Block</div>
+      <TrafficDevice />
     </div>
   );
 };
